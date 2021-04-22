@@ -1,0 +1,76 @@
+{
+	"common": {
+		"name": "waterkotte",
+		"version": "0.0.1",
+		"news": {
+			"0.0.1": {
+				"en": "initial release",
+				"de": "Erstveröffentlichung",
+				"ru": "Начальная версия",
+				"pt": "lançamento inicial",
+				"nl": "Eerste uitgave",
+				"fr": "Première version",
+				"it": "Versione iniziale",
+				"es": "Versión inicial",
+				"pl": "Pierwsze wydanie",
+				"zh-cn": "首次出版"
+			}
+		},
+		"titleLang": {
+			"en": "Waterkotte",
+			"de": "Waterkotte",
+			"ru": "Waterkotte",
+			"pt": "Waterkotte",
+			"nl": "Waterkotte",
+			"fr": "Waterkotte",
+			"it": "Waterkotte",
+			"es": "Waterkotte",
+			"pl": "Waterkotte",
+			"zh-cn": "Waterkotte"
+		},
+		"desc": {
+			"en": "heating system waterkotte",
+			"de": "heating system waterkotte",
+			"ru": "heating system waterkotte",
+			"pt": "heating system waterkotte",
+			"nl": "heating system waterkotte",
+			"fr": "heating system waterkotte",
+			"it": "heating system waterkotte",
+			"es": "heating system waterkotte",
+			"pl": "heating system waterkotte",
+			"zh-cn": "heating system waterkotte"
+		},
+		"authors": [
+			"Pietri67 <torsten.voigt@nobibum.de>"
+		],
+		"keywords": [
+			"heating",
+			"waterkotte",
+			"ioBroker"
+		],
+		"license": "MIT",
+		"platform": "Javascript/Node.js",
+		"icon": "waterkotte.png",
+		"enabled": true,
+		"extIcon": "https://raw.githubusercontent.com/Pietri67/ioBroker.waterkotte/master/admin/waterkotte.png",
+		"readme": "https://github.com/Pietri67/ioBroker.waterkotte/blob/master/README.md",
+		"loglevel": "info",
+		"mode": "daemon",
+		"type": "iot-systems",
+		"compact": true,
+		"connectionType": "local",
+		"dataSource": "poll",
+		"materialize": true,
+		"dependencies": [
+			{
+				"js-controller": ">=2.0.0"
+			}
+		]
+	},
+	"native": {
+		"option1": true,
+		"option2": "42"
+	},
+	"objects": [],
+	"instanceObjects": []
+}
