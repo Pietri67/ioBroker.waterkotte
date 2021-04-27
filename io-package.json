@@ -5,40 +5,16 @@
 		"news": {
 			"0.0.1": {
 				"en": "initial release",
-				"de": "Erstveröffentlichung",
-				"ru": "Начальная версия",
-				"pt": "lançamento inicial",
-				"nl": "Eerste uitgave",
-				"fr": "Première version",
-				"it": "Versione iniziale",
-				"es": "Versión inicial",
-				"pl": "Pierwsze wydanie",
-				"zh-cn": "首次出版"
+				"de": "Erstveröffentlichung"
 			}
 		},
-		"titleLang": {
+		"title": {
 			"en": "Waterkotte",
-			"de": "Waterkotte",
-			"ru": "Waterkotte",
-			"pt": "Waterkotte",
-			"nl": "Waterkotte",
-			"fr": "Waterkotte",
-			"it": "Waterkotte",
-			"es": "Waterkotte",
-			"pl": "Waterkotte",
-			"zh-cn": "Waterkotte"
+			"de": "Waterkotte"
 		},
 		"desc": {
 			"en": "heating system waterkotte",
-			"de": "heating system waterkotte",
-			"ru": "heating system waterkotte",
-			"pt": "heating system waterkotte",
-			"nl": "heating system waterkotte",
-			"fr": "heating system waterkotte",
-			"it": "heating system waterkotte",
-			"es": "heating system waterkotte",
-			"pl": "heating system waterkotte",
-			"zh-cn": "heating system waterkotte"
+			"de": "heating system waterkotte"
 		},
 		"authors": [
 			"Pietri67 <torsten.voigt@nobibum.de>"
@@ -52,9 +28,10 @@
 		"platform": "Javascript/Node.js",
 		"icon": "waterkotte.png",
 		"enabled": true,
+		"loglevel": "info",
+		"messagebox": true,
 		"extIcon": "https://raw.githubusercontent.com/Pietri67/ioBroker.waterkotte/master/admin/waterkotte.png",
 		"readme": "https://github.com/Pietri67/ioBroker.waterkotte/blob/master/README.md",
-		"loglevel": "info",
 		"mode": "daemon",
 		"type": "iot-systems",
 		"compact": true,
@@ -68,9 +45,31 @@
 		]
 	},
 	"native": {
-		"option1": true,
-		"option2": "42"
+		"usbport": "/dev/ttyUSB0",
+		"baudrate": 9600
 	},
 	"objects": [],
-	"instanceObjects": []
+	"instanceObjects": [
+		{
+		  "_id": "info",
+		  "type": "channel",
+		  "common": {
+			"name": "Information"
+		  },
+		  "native": {}
+		},
+		{
+		  "_id": "info.connection",
+		  "type": "state",
+		  "common": {
+			"role": "indicator.connected",
+			"name": "If connected to Eltako",
+			"type": "boolean",
+			"read": true,
+			"write": false,
+			"def": false
+		  },
+		  "native": {}
+		}
+	]	
 }

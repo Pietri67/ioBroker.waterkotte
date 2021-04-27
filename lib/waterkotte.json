@@ -1,0 +1,42 @@
+{
+    "Common": {
+        "1": {
+            "Name": "OutdoorTemp",
+            "Desc": "Aussentemperatur",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+
+        },
+        "2": {
+            "Name": "OutdoorTemp1h",
+            "Desc": "T Aussen 1h",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "3": {
+            "Name": "OutdoorTemp24h",
+            "Desc": "T Aussen 24h",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }
+
+
+
+    }
+}
+

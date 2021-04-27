@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use strict';
 
 /*
@@ -8,8 +9,17 @@
 // you need to create an adapter
 const utils = require('@iobroker/adapter-core');
 
+
 // Load your modules here, e.g.:
-// const fs = require("fs");
+const SerialPort = require('serialport');
+const InterByteTimeout = require('@serialport/parser-inter-byte-timeout');
+const StateList = require('./lib/waterkotte.json');
+const WkTools = require('./lib/wk-tools');
+
+// Communication Port/Parser
+let commPort = null;
+let commParser = null;
+let adapter = null;
 
 class Waterkotte extends utils.Adapter {
 
@@ -24,12 +34,38 @@ class Waterkotte extends utils.Adapter {
 		this.on('ready', this.onReady.bind(this));
 		this.on('unload', this.onUnload.bind(this));
 		this.on('stateChange', this.onStateChange.bind(this));
+
+		// remember
+		adapter = this;
 	}
 
 	/**
 	 * Is called when databases are connected and adapter received configuration.
 	 */
 	async onReady() {
+		// Reset the connection indicator during startup
+		await this.setStateAsync('info.connection', false, true);
+
+		// try to initialize communication
+		if (this.config.usbport) {
+
+			// create serial port
+			commPort = new SerialPort(this.config.usbport, {
+				baudRate: 9600
+			});
+
+			// create parser with timeout
+			commParser = commPort.pipe(new InterByteTimeout({interval: 5000}));
+
+			// initialize communication
+			await this.communication();
+
+			// Start polling
+			setInterval(this.requestData1, 20000);
+		}
+
+		// Create state list
+		this.createStateList();
 	}
 
 	/**
@@ -38,6 +74,14 @@ class Waterkotte extends utils.Adapter {
 	 */
 	onUnload(callback) {
 		try {
+			// stop communication
+			if (commPort != null) {
+				commPort.close();
+			}
+
+			// update connection state.
+			this.setState('info.connection', false, true);
+
 			callback();
 		} catch (e) {
 			callback();
@@ -58,7 +102,158 @@ class Waterkotte extends utils.Adapter {
 			this.log.info(`state ${id} deleted`);
 		}
 	}
+
+
+	/*
+	 *   serial communiation eltako
+	 */
+	async communication() {
+
+		// port opened
+		commPort.on('open', () => {
+
+			// setup parser
+			commParser.on('data' , (data) => {
+				this.parseRequest1(data);
+			});
+
+			// update connection state.
+			this.setState('info.connection', true, true);
+
+			// Logfile
+			this.log.info('Waterkotte usb/serial port ' + this.config.usbport + ' with baudrate ' + this.config.baudrate + ' opened.');
+		});
+
+		// port closed
+		commPort.on('close', () => {
+			// update connection state.
+			this.setState('info.connection', false, true);
+
+			// Logfile
+			this.log.info('Waterkotte usb/serial port ' + this.config.usbport + ' closed.');
+		});
+
+		// port error
+		commPort.on('error', (error) => {
+			// Logfile
+			this.log.info('Waterkotte usb/serial port ' + this.config.usbport + ' error: ' + error);
+		});
+	}
+
+	/*
+	*  Request TLG1
+	*/
+	async requestData1() {
+		try
+		{
+			const tlg = [];
+
+			tlg[0] = 1;     // Adr
+			tlg[1] = 3;     // Func.
+
+			tlg[2] = 0x00;      // Data
+			tlg[3] = 0x01;      // Data
+			tlg[4] = 0x00;      // Data
+			tlg[5] = 0x7D;      // Data
+
+			const crc16 = WkTools.calcCRC16(tlg, 6);
+			tlg[6] = (crc16 >> 8) & 0xFF;
+			tlg[7] = crc16 & 0xFF;
+
+			// send Waterkotte telegram
+			commPort.write(tlg, (err) => {
+				if (err) {
+					adapter.log.warn('Waterkotte telegram error sending data: ' + err);
+					return;
+				}
+			});
+
+			adapter.log.info('Waterkotte telegram sending data: ' + tlg);
+
+		} catch (e) {
+			// Logfile
+			adapter.log.error('Waterkotte telegram sent error: ' + e);
+		}
+	}
+
+	/*
+	* Parse requested data
+	*/
+	async parseRequest1(data) {
+
+		// Logfile
+		this.log.info('Wk response: ' + WkTools.DataToString(data));
+
+		// Check CRC
+	//	const len = data[2];
+	//	const crc16 = WkTools.calcCRC16(data, len+3);
+	//	if (((crc16 & 0xff) === data[len+3]) && (((crc16 >> 8) & 0xff) === data[len+4])) {
+
+//			this.log.warn('CRC ok ');
+
+			this.setState('common.OutdoorTemp', WkTools.convert754(data[59], data[60], data[57], data[58]), true);
+			this.setState('common.OutdoorTemp1h', WkTools.convert754(data[63], data[64], data[61], data[62]), true);
+			this.setState('common.OutdoorTemp24h', WkTools.convert754(data[67], data[68], data[65], data[66]), true);
+/*
+		} else {
+			this.log.warn('CRC error: ' + crc16 + ' <> ' + data[len+3] + ' ' + data[len+4] + ' len: ' + len + ' x:' + data[len+2] );
+		}
+*/
+	}
+
+
+
+
+	/*
+	* create Waterkotte state list
+	*/
+	async createStateList() {
+
+		// Path
+		let path = '';
+
+		// first delete all
+
+
+		// Create tree structure
+
+
+		// Common
+		path = 'common';
+		this.setObjectNotExistsAsync(path, {
+			type: 'channel',
+			common: {
+				name: 'common'
+			},
+			native: {}
+		});
+
+		for (const i in StateList.Common) {
+
+			const subpath = path + '.' + StateList.Common[i].Name;
+			this.setObjectNotExistsAsync(subpath, {
+				type: 'state',
+				common:
+				{
+					name: StateList.Common[i].Desc,
+					type: StateList.Common[i].Type,
+					role: StateList.Common[i].Role,
+					read:  true,
+					write: StateList.Common[i].Write.Enable,
+					def: ''
+				},
+				native: {
+					'Write': StateList.Common[i].Write.Enable,
+					'Adr':  StateList.Common[i].Write.Adr,
+					'Enum': StateList.Common[i].Write.Enum
+				}
+			});
+		}
+	}
 }
+
+
+
 
 if (require.main !== module) {
 	// Export the constructor in compact mode
