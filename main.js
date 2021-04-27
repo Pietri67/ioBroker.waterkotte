@@ -60,8 +60,8 @@ class Waterkotte extends utils.Adapter {
 			// initialize communication
 			await this.communication();
 
-			// Start polling
-			setInterval(this.requestData1, 20000);
+			// Start polling (1min)
+			setInterval(this.requestData1, 60000);
 		}
 
 		// Create state list
@@ -113,8 +113,8 @@ class Waterkotte extends utils.Adapter {
 		commPort.on('open', () => {
 
 			// setup parser
-			commParser.on('data' , (data) => {
-				this.parseRequest1(data);
+			commParser.on('data' , (tlg) => {
+				this.parseRequest1(tlg);
 			});
 
 			// update connection state.
@@ -179,30 +179,42 @@ class Waterkotte extends utils.Adapter {
 	/*
 	* Parse requested data
 	*/
-	async parseRequest1(data) {
+	async parseRequest1(tlg) {
+
+		const data = tlg;
 
 		// Logfile
 		this.log.info('Wk response: ' + WkTools.DataToString(data));
 
 		// Check CRC
-	//	const len = data[2];
-	//	const crc16 = WkTools.calcCRC16(data, len+3);
-	//	if (((crc16 & 0xff) === data[len+3]) && (((crc16 >> 8) & 0xff) === data[len+4])) {
-
-//			this.log.warn('CRC ok ');
+		const len = data[2];
+		const crc16 = WkTools.calcCRC16(data, len+3);
+		if (((crc16 & 0xff) === data[len+4]) && (((crc16 >> 8) & 0xff) === data[len+3])) {
 
 			this.setState('common.OutdoorTemp', WkTools.convert754(data[59], data[60], data[57], data[58]), true);
 			this.setState('common.OutdoorTemp1h', WkTools.convert754(data[63], data[64], data[61], data[62]), true);
 			this.setState('common.OutdoorTemp24h', WkTools.convert754(data[67], data[68], data[65], data[66]), true);
-/*
+
+			this.setState('common.HeatSourceIn', WkTools.convert754(data[71], data[72], data[69], data[70]), true);
+			this.setState('common.HeatSourceOut', WkTools.convert754(data[75], data[76], data[74], data[74]), true);
+			this.setState('common.EvaporationTemp', WkTools.convert754(data[79], data[80], data[77], data[78]), true);
+			this.setState('common.SuctionGasTemp', WkTools.convert754(data[83], data[84], data[81], data[82]), true);
+			this.setState('common.EvaporationPress', WkTools.convert754(data[87], data[88], data[85], data[86]), true);
+			this.setState('common.ReturnTempNominal', WkTools.convert754(data[91], data[92], data[89], data[90]), true);
+			this.setState('common.ReturnTemp', WkTools.convert754(data[95], data[96], data[93], data[94]), true);
+
+			this.setState('common.FlowTemp', WkTools.convert754(data[99], data[100], data[97], data[98]), true);
+			this.setState('common.CondensationTemp', WkTools.convert754(data[103], data[104], data[101], data[102]), true);
+			this.setState('common.CondensationPress', WkTools.convert754(data[107], data[108], data[105], data[106]), true);
+			this.setState('common.RoomTemp', WkTools.convert754(data[111], data[112], data[109], data[110]), true);
+			this.setState('common.RoomTemp1h', WkTools.convert754(data[115], data[116], data[113], data[114]), true);
+			this.setState('common.DomesticWaterTemp', WkTools.convert754(data[119], data[120], data[117], data[118]), true);
+
 		} else {
-			this.log.warn('CRC error: ' + crc16 + ' <> ' + data[len+3] + ' ' + data[len+4] + ' len: ' + len + ' x:' + data[len+2] );
+			this.log.warn('CRC error: ' + crc16 + ' <> ' + data[len+3] + ' ' + data[len+4]);
 		}
-*/
+
 	}
-
-
-
 
 	/*
 	* create Waterkotte state list

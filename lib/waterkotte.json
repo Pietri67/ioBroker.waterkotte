@@ -33,10 +33,152 @@
                 "Adr" : 0,
                 "Enum": 0     
             }
+        },
+        "4": {
+            "Name": "HeatSourceIn",
+            "Desc": "T Quelle Ein",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "5": {
+            "Name": "HeatSourceOut",
+            "Desc": "T Quelle Aus",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "6": {
+            "Name": "EvaporationTemp",
+            "Desc": "T Verdampfer",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "7": {
+            "Name": "SuctionGasTemp",
+            "Desc": "T Saugleitung",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "8": {
+            "Name": "EvaporationPress",
+            "Desc": "p Verdampfer",
+            "Type": "number",
+            "Role": "value.pressure",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "9": {
+            "Name": "ReturnTempNominal",
+            "Desc": "T Rücklauf Soll",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "10": {
+            "Name": "ReturnTemp",
+            "Desc": "T Rücklauf Ist",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "11": {
+            "Name": "FlowTemp",
+            "Desc": "T Vorlauf",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "12": {
+            "Name": "CondensationTemp",
+            "Desc": "T Kondensator",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "13": {
+            "Name": "CondensationPress",
+            "Desc": "p Kondensator",
+            "Type": "number",
+            "Role": "value.pressure",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "14": {
+            "Name": "RoomTemp",
+            "Desc": "T Raum Ist",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "15": {
+            "Name": "RoomTemp1h",
+            "Desc": "T Raum 1h",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "16": {
+            "Name": "DomesticWaterTemp",
+            "Desc": "T Warmwasser Ist",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
         }
 
 
 
     }
 }
-
