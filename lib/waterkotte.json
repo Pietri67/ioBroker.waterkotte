@@ -186,9 +186,9 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
-                "Adr" : 0,
-                "Enum": 0     
+                "Enable" : true,
+                "Adr" : 1009,    
+                "Enum": 1     
             }
         },
         "2": {
@@ -197,9 +197,9 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
-                "Adr" : 0,
-                "Enum": 0     
+                "Enable" : true,
+                "Adr" : 1025,
+                "Enum": 4     
             }
         },
         "3": {
@@ -208,9 +208,9 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
-                "Adr" : 0,
-                "Enum": 0     
+                "Enable" : true,
+                "Adr" : 1041,
+                "Enum": 4     
             }
         },
         "4": {
@@ -219,9 +219,9 @@
             "Type": "number",
             "Role": "value.temperature",
             "Write": {
-                "Enable" : false,
-                "Adr" : 0,
-                "Enum": 0     
+                "Enable" : true,
+                "Adr" : 1057,
+                "Enum": 3     
             }
         },
         "5": {
@@ -571,5 +571,136 @@
                 "Enum": 0     
             }
         }
+    },
+
+    "Step2": {
+        "1": {
+            "Name": "Mode",
+            "Desc": "Stufe 2 Modus",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "2": {
+            "Name": "LimitSource",
+            "Desc": "T Limit Quelle E",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }
+    },
+
+    "Operation": {
+        "1": {
+            "Name": "OpComp1",
+            "Desc": "Kompressor 1",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "2": {
+            "Name": "OpComp2",
+            "Desc": "Kompressor 2",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }, 
+        "3": {
+            "Name": "OpHeatComp1",
+            "Desc": "Heizung Kompressor",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }, 
+        "4": {
+            "Name": "OpHeatStep2",
+            "Desc": "Heizung E-Stab",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }, 
+        "5": {
+            "Name": "OpCooling",
+            "Desc": "Kühlung",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }, 
+        "6": {
+            "Name": "OpWaterComp1",
+            "Desc": "Warmwasser Kompressor",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }, 
+        "7": {
+            "Name": "OpWaterStep2",
+            "Desc": "Warmwasser E-Stab",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }, 
+        "8": {
+            "Name": "OpPoolWater",
+            "Desc": "Schwimmbecken",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }, 
+        "9": {
+            "Name": "OpSolar",
+            "Desc": "Solarkollektor",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }
     }
+
+           
+
+            
 }
