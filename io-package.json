@@ -46,7 +46,11 @@
 	},
 	"native": {
 		"usbport": "/dev/ttyUSB0",
-		"baudrate": 9600
+		"baudrate": 9600,
+		"timeout": 30000,
+		"repeat1": 1,
+		"repeat2": 5,
+		"repeat3": 5
 	},
 	"objects": [],
 	"instanceObjects": [
@@ -63,13 +67,27 @@
 		  "type": "state",
 		  "common": {
 			"role": "indicator.connected",
-			"name": "If connected to Eltako",
+			"name": "If connected to Waterkotte",
 			"type": "boolean",
 			"read": true,
 			"write": false,
 			"def": false
 		  },
 		  "native": {}
-		}
+		},
+		{
+			"_id": "info.lastmsg",
+			"type": "state",
+			"common": {
+			  "role": "text",
+			  "name": "last received Waterkotte message",
+			  "type": "string",
+			  "read": true,
+			  "write": false,
+			  "def": ""
+			},
+			"native": {}
+		  }
+
 	]	
 }

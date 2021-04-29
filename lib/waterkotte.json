@@ -90,7 +90,7 @@
             }
         },
         "9": {
-            "Name": "ReturnTempNominal",
+            "Name": "ReturnTempTarget",
             "Desc": "T Rücklauf Soll",
             "Type": "number",
             "Role": "value.temperature",
@@ -101,7 +101,7 @@
             }
         },
         "10": {
-            "Name": "ReturnTemp",
+            "Name": "ReturnTempCurrent",
             "Desc": "T Rücklauf Ist",
             "Type": "number",
             "Role": "value.temperature",
@@ -177,8 +177,399 @@
                 "Enum": 0     
             }
         }
+    },
 
+    "Heating": {
+        "1": {
+            "Name": "Off",
+            "Desc": "Abschaltung Ein/Aus",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "2": {
+            "Name": "Begin",
+            "Desc": "Abschaltung Beginn",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "3": {
+            "Name": "End",
+            "Desc": "Abschaltung Ende",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "4": {
+            "Name": "SetPoint",
+            "Desc": "T aussen Einsatz",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "5": {
+            "Name": "SetPointBaseTemp",
+            "Desc": "T Rück Einsatz",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "6": {
+            "Name": "Gradient",
+            "Desc": "Kennl. Steigung",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "7": {
+            "Name": "Limit",
+            "Desc": "Kennl. Limit",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },  
+        "8": {
+            "Name": "ReturnTempCurrent",
+            "Desc": "T Rücklauf Ist",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "9": {
+            "Name": "ReturnTempTarget",
+            "Desc": "T Rücklauf Soll",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "10": {
+            "Name": "Hysteresis",
+            "Desc": "Hysterese",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "11": {
+            "Name": "RoomTempTarget",
+            "Desc": "T Raum Soll",
+            "Type": "number",
+            "Role": "value.temerature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "12": {
+            "Name": "RoomTempFactor",
+            "Desc": "Raumeinfluss",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "13": {
+            "Name": "SetpointShutOff",
+            "Desc": "Sollwertänderung Ein/Aus",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "14": {
+            "Name": "SetpointBegin",
+            "Desc": "Sollwertänderung Beginn",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "15": {
+            "Name": "SetpointEnd",
+            "Desc": "Sollwertänderung Ende",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "16": {
+            "Name": "SetpointSum",
+            "Desc": "Sollwertänderung Betrag",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "17": {
+            "Name": "StepMode",
+            "Desc": "Stufen Modus",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "18": {
+            "Name": "StepModeDiff",
+            "Desc": "Stufen Modus max. Diff.",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }
+    },
 
-
+    "Cooling": {
+        "1": {
+            "Name": "Off",
+            "Desc": "Abschaltung Ein/Aus",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "2": {
+            "Name": "Begin",
+            "Desc": "Abschaltung Beginn",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "3": {
+            "Name": "End",
+            "Desc": "Abschaltung Ende",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "4": {
+            "Name": "SetPoint",
+            "Desc": "T aussen Einsatz",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "5": {
+            "Name": "ReturnTempCurrent",
+            "Desc": "T Rücklauf Ist",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "6": {
+            "Name": "ReturnTempTarget",
+            "Desc": "T Rücklauf Soll",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "7": {
+            "Name": "Hysteresis",
+            "Desc": "Hysterese",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }
+    }, 
+ 
+    "HotWater": {
+        "1": {
+            "Name": "Off",
+            "Desc": "Abschaltung Ein/Aus",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "2": {
+            "Name": "Begin",
+            "Desc": "Abschaltung Beginn",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "3": {
+            "Name": "End",
+            "Desc": "Abschaltung Ende",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "4": {
+            "Name": "WaterTempCurrent",
+            "Desc": "T Rücklauf Ist",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "5": {
+            "Name": "WaterTempTarget",
+            "Desc": "T Rücklauf Soll",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "6": {
+            "Name": "Hysteresis",
+            "Desc": "Hysterese",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "7": {
+            "Name": "Legionella",
+            "Desc": "Legionella",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "8": {
+            "Name": "LegionellaOn",
+            "Desc": "Legionella Beginn",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "9": {
+            "Name": "LegionellaOff",
+            "Desc": "Legionella Ende",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "10": {
+            "Name": "LegionellaTemp",
+            "Desc": "Legionella Temperatur",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }
     }
 }
