@@ -13,7 +13,7 @@
 
 ## waterkotte adapter for ioBroker
 
-heating system waterkotte
+heating system waterkotte WPCU.C
 
 ## Developer manual
 This section is intended for the developer. It can be deleted later

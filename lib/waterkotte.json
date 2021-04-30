@@ -6,7 +6,7 @@
             "Type": "number",
             "Role": "value.temperature",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -18,7 +18,7 @@
             "Type": "number",
             "Role": "value.temperature",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -29,7 +29,7 @@
             "Type": "number",
             "Role": "value.temperature",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -40,7 +40,7 @@
             "Type": "number",
             "Role": "value.temperature",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -51,7 +51,7 @@
             "Type": "number",
             "Role": "value.temperature",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -62,7 +62,7 @@
             "Type": "number",
             "Role": "value.temperature",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -73,7 +73,7 @@
             "Type": "number",
             "Role": "value.temperature",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -84,7 +84,7 @@
             "Type": "number",
             "Role": "value.pressure",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -95,7 +95,7 @@
             "Type": "number",
             "Role": "value.temperature",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -106,7 +106,7 @@
             "Type": "number",
             "Role": "value.temperature",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -117,7 +117,7 @@
             "Type": "number",
             "Role": "value.temperature",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -128,7 +128,7 @@
             "Type": "number",
             "Role": "value.temperature",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -139,7 +139,7 @@
             "Type": "number",
             "Role": "value.pressure",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -150,7 +150,7 @@
             "Type": "number",
             "Role": "value.temperature",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -161,7 +161,7 @@
             "Type": "number",
             "Role": "value.temperature",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -172,7 +172,7 @@
             "Type": "number",
             "Role": "value.temperature",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -186,7 +186,7 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : true,
+                "Enable": true,
                 "Adr" : 1009,    
                 "Enum": 1     
             }
@@ -197,7 +197,7 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : true,
+                "Enable": true,
                 "Adr" : 1025,
                 "Enum": 4     
             }
@@ -208,7 +208,7 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : true,
+                "Enable": true,
                 "Adr" : 1041,
                 "Enum": 4     
             }
@@ -219,7 +219,7 @@
             "Type": "number",
             "Role": "value.temperature",
             "Write": {
-                "Enable" : true,
+                "Enable": true,
                 "Adr" : 1057,
                 "Enum": 3     
             }
@@ -230,9 +230,9 @@
             "Type": "number",
             "Role": "value.temperature",
             "Write": {
-                "Enable" : false,
-                "Adr" : 0,
-                "Enum": 0     
+                "Enable": true,
+                "Adr" : 1089,
+                "Enum": 3     
             }
         },
         "6": {
@@ -241,9 +241,9 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
-                "Adr" : 0,
-                "Enum": 0     
+                "Enable": true,
+                "Adr" : 1121,
+                "Enum": 3     
             }
         },
         "7": {
@@ -285,20 +285,20 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
-                "Adr" : 0,
-                "Enum": 0     
+                "Enable": true,
+                "Adr" : 1249,
+                "Enum": 3     
             }
         },
         "11": {
             "Name": "RoomTempTarget",
             "Desc": "T Raum Soll",
             "Type": "number",
-            "Role": "value.temerature",
+            "Role": "value.temperature",
             "Write": {
-                "Enable" : false,
-                "Adr" : 0,
-                "Enum": 0     
+                "Enable": true,
+                "Adr" : 1281,
+                "Enum": 3     
             }
         },
         "12": {
@@ -307,9 +307,9 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
-                "Adr" : 0,
-                "Enum": 0     
+                "Enable": true,
+                "Adr" : 1313,
+                "Enum": 1     
             }
         },
         "13": {
@@ -318,9 +318,9 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
-                "Adr" : 0,
-                "Enum": 0     
+                "Enable": true,
+                "Adr" : 1329,
+                "Enum": 1     
             }
         },
         "14": {
@@ -329,9 +329,9 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
-                "Adr" : 0,
-                "Enum": 0     
+                "Enable": true,
+                "Adr" : 1345,
+                "Enum": 4     
             }
         },
         "15": {
@@ -340,9 +340,9 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
-                "Adr" : 0,
-                "Enum": 0     
+                "Enable": true,
+                "Adr" : 1361,
+                "Enum": 4     
             }
         },
         "16": {
@@ -351,9 +351,9 @@
             "Type": "number",
             "Role": "value.temperature",
             "Write": {
-                "Enable" : false,
-                "Adr" : 0,
-                "Enum": 0     
+                "Enable": true,
+                "Adr" : 1377,
+                "Enum": 3    
             }
         },
         "17": {
@@ -362,7 +362,7 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -387,9 +387,9 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
-                "Adr" : 0,
-                "Enum": 0     
+                "Enable": true,
+                "Adr" : 1457,
+                "Enum": 1     
             }
         },
         "2": {
@@ -398,9 +398,9 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
-                "Adr" : 0,
-                "Enum": 0     
+                "Enable": true,
+                "Adr" : 1473,
+                "Enum": 4     
             }
         },
         "3": {
@@ -409,9 +409,9 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
-                "Adr" : 0,
-                "Enum": 0     
+                "Enable": true,
+                "Adr" : 1489,
+                "Enum": 4     
             }
         },
         "4": {
@@ -420,9 +420,9 @@
             "Type": "number",
             "Role": "value.temperature",
             "Write": {
-                "Enable" : false,
-                "Adr" : 0,
-                "Enum": 0     
+                "Enable": true,
+                "Adr" : 1505,
+                "Enum": 4     
             }
         },
         "5": {
@@ -431,7 +431,7 @@
             "Type": "number",
             "Role": "value.temperature",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -442,9 +442,9 @@
             "Type": "number",
             "Role": "value.temperature",
             "Write": {
-                "Enable" : false,
-                "Adr" : 0,
-                "Enum": 0     
+                "Enable": true,
+                "Adr" : 1569,
+                "Enum": 3     
             }
         },
         "7": {
@@ -453,9 +453,9 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
-                "Adr" : 0,
-                "Enum": 0     
+                "Enable": true,
+                "Adr" : 1601,
+                "Enum": 3     
             }
         }
     }, 
@@ -467,9 +467,9 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
-                "Adr" : 0,
-                "Enum": 0     
+                "Enable": true,
+                "Adr" : 1633,
+                "Enum": 1     
             }
         },
         "2": {
@@ -478,9 +478,9 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
-                "Adr" : 0,
-                "Enum": 0     
+                "Enable": true,
+                "Adr" : 1649,
+                "Enum": 4     
             }
         },
         "3": {
@@ -489,9 +489,9 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
-                "Adr" : 0,
-                "Enum": 0     
+                "Enable": true,
+                "Adr" : 1665,
+                "Enum": 4     
             }
         },
         "4": {
@@ -500,7 +500,7 @@
             "Type": "number",
             "Role": "value.temperature",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -511,9 +511,9 @@
             "Type": "number",
             "Role": "value.temperature",
             "Write": {
-                "Enable" : false,
-                "Adr" : 0,
-                "Enum": 0     
+                "Enable": true,
+                "Adr" : 1713,
+                "Enum": 3     
             }
         },
         "6": {
@@ -522,9 +522,9 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
-                "Adr" : 0,
-                "Enum": 0     
+                "Enable": true,
+                "Adr" : 1745,
+                "Enum": 3     
             }
         },
         "7": {
@@ -544,7 +544,7 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -555,7 +555,7 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -566,7 +566,7 @@
             "Type": "number",
             "Role": "value.temperature",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -580,7 +580,7 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -591,7 +591,7 @@
             "Type": "number",
             "Role": "value.temperature",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -605,7 +605,7 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -616,7 +616,7 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -627,7 +627,7 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -638,7 +638,7 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -649,7 +649,7 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -660,7 +660,7 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -671,7 +671,7 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -682,7 +682,7 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
@@ -693,14 +693,458 @@
             "Type": "number",
             "Role": "value",
             "Write": {
-                "Enable" : false,
+                "Enable": false,
                 "Adr" : 0,
                 "Enum": 0     
             }
         }
-    }
+    },
 
-           
+    "Failure": {
+        "1": {
+            "Name": "Time",
+            "Desc": "Ausfallzeit",
+            "Type": "string",
+            "Role": "text",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "2": {
+            "Name": "Date",
+            "Desc": "Ausfalldatum",
+            "Type": "string",
+            "Role": "text",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "3": {
+            "Name": "Mode",
+            "Desc": "Betriebsmodus",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "4": {
+            "Name": "DOBuffer",
+            "Desc": "DO-Buffer",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "5": {
+            "Name": "DIBuffer",
+            "Desc": "DI-Buffer",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "6": {
+            "Name": "Sensors",
+            "Desc": "Fühlerfehler",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "7": {
+            "Name": "PressureEvaporation",
+            "Desc": "T Verdampfer",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "8": {
+            "Name": "PressureCondensation",
+            "Desc": "T Kondensator",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "9": {
+            "Name": "ReturnTempCurrent",
+            "Desc": "T Rücklauf Ist",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "10": {
+            "Name": "FlowTemp",
+            "Desc": "T Vorlauf",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "11": {
+            "Name": "HeatSourceIn",
+            "Desc": "T Quelle Ein",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "12": {
+            "Name": "HeatSourceOut",
+            "Desc": "T Quelle Aus",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "13": {
+            "Name": "SuctionGasTemp",
+            "Desc": "T Saugleitung",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "14": {
+            "Name": "OutdoorTemp",
+            "Desc": "T Aussen",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "15": {
+            "Name": "DomesticWaterTemp",
+            "Desc": "T Warmwasser Ist",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }
+    },
 
-            
+    "Service": {
+        "1": {
+            "Name": "OffsetND",
+            "Desc": "Offset ND",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "2": {
+            "Name": "OffsetHD",
+            "Desc": "Offset HD",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "3": {
+            "Name": "NDState",
+            "Desc": "ND Status",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }
+    },
+
+    "Warnings": {
+        "1": {
+            "Name": "Failure",
+            "Desc": "Ausfälle",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "2": {
+            "Name": "Interruptions",
+            "Desc": "Unterbrechungen",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "3": {
+            "Name": "Inputs",
+            "Desc": "Warnungen Eingang",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "4": {
+            "Name": "Outputs",
+            "Desc": "Warnungen Ausgang",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "5": {
+            "Name": "Sensors",
+            "Desc": "Warnungen Sensorik",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "6": {
+            "Name": "Others",
+            "Desc": "Warnungen Sonstige",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "7": {
+            "Name": "SupressInputs",
+            "Desc": "Unterdrückung Warnungen Eingang",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "8": {
+            "Name": "SupressOutputs",
+            "Desc": "Unterdrückung Warnungen Ausgang",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "9": {
+            "Name": "SupressSensorik",
+            "Desc": "Unterdrückung Warnungen Sensorik",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "10": {
+            "Name": "SupressOthers",
+            "Desc": "Unterdrückung Warnungen Sonstige",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }
+    },
+
+
+   "Energy": {
+        "1": {
+            "Name": "ElectricPower",
+            "Desc": "Leistung elektrisch",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "2": {
+            "Name": "ThermicPower",
+            "Desc": "Leistung thermisch",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "3": {
+            "Name": "COP",
+            "Desc": "COP",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "4": {
+            "Name": "SelectYear",
+            "Desc": "Auswahl Jahr",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "5": {
+            "Name": "SelectType",
+            "Desc": "Auswahl Typ",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "6": {
+            "Name": "SelectValue",
+            "Desc": "ausgewählter Wert",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "7": {
+            "Name": "PowerPunp",
+            "Desc": "Leistung Pumpe",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }
+   },
+
+   "Info": {
+        "1": {
+            "Name": "Version",
+            "Desc": "Version Firmware",
+            "Type": "string",
+            "Role": "text",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "2": {
+            "Name": "Date",
+            "Desc": "Datum Firmware",
+            "Type": "string",
+            "Role": "text",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "3": {
+            "Name": "Model",
+            "Desc": "Model",
+            "Type": "string",
+            "Role": "text",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "4": {
+            "Name": "Serial",
+            "Desc": "Seriennummer",
+            "Type": "string",
+            "Role": "text",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }
+   }
 }
+
+
+

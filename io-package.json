@@ -1,16 +1,20 @@
 {
 	"common": {
 		"name": "waterkotte",
-		"version": "0.0.1",
+		"version": "0.0.2",
 		"news": {
+			"0.0.2": {
+				"en": "Testversion",
+				"de": "Testversion"
+			},
 			"0.0.1": {
 				"en": "initial release",
 				"de": "Erstveröffentlichung"
 			}
 		},
 		"title": {
-			"en": "Waterkotte",
-			"de": "Waterkotte"
+			"en": "Waterkotte WPCU.C",
+			"de": "Waterkotte WPCU.C"
 		},
 		"desc": {
 			"en": "heating system waterkotte",

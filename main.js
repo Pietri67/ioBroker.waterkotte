@@ -30,8 +30,8 @@ let timerID3 = 0;
 let recTimeout = 0;
 
 // Execution queue
-const queue = [];
 let parseRequestNum = 1;
+let commQueue = null;
 
 // state machine steps...
 let currentStep = '';
@@ -76,8 +76,13 @@ class Waterkotte extends utils.Adapter {
 			await this.communication();
 		}
 
-		// Create state list
+		// create state list
 		this.createStateList();
+
+		// create comm queue
+		commQueue = new WkTools.Queue();
+
+		// init state machin
 		this.statemachine('init');
 	}
 
@@ -111,8 +116,6 @@ class Waterkotte extends utils.Adapter {
 	 */
 	async onStateChange(id, state) {
 		if (state) {
-			// The state was changed
-			this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack}) from: ${state.from}`);
 
 			// state.from
 			// example: system.adapter.waterkotte.0.
@@ -121,23 +124,25 @@ class Waterkotte extends utils.Adapter {
 
 			if (adaptFrom !== 'system.adapter.waterkotte') {
 
-				// id
+				// The state was changed
+				this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack}) from: ${state.from}`);
+
 				// state waterkotte.0.heating.Off changed: true (ack = false) from: system.adapter.admin.0
 				// state waterkotte.0.heating.Off changed: true (ack = false) from: system.adapter.socketio.0
 				// state waterkotte.0.heating.Off changed: false (ack = true) from: system.adapter.waterkotte.0
+
 				const stateObject = await this.getObjectAsync(id);
 				if (stateObject)  {
-					this.log.info(`State '${id}'`);
-					this.log.info('Adr: ' + stateObject.native.Adr + ' Enum ' + stateObject.native.Enum);
-					this.log.info('new Value: ' + state.val);
 
-					this.setIntegerValue(stateObject.native.Adr, state.val);
-
+					// 4, enum, adr, value
+					commQueue.enqueue([4, stateObject.native.Enum, stateObject.native.Adr, state.val]);
+					if (currentStep == 'idle') {
+						this.statemachine('wait');
+					}
 				} else {
 					this.log.info(`Unable to get state value of '${id}'.`, 'error');
 				}
 			}
-
 		} else {
 			// The state was deleted
 			this.log.info(`state ${id} deleted`);
@@ -154,7 +159,7 @@ class Waterkotte extends utils.Adapter {
 			const tlg = [];
 
 			tlg[0] = 1;     // Adr
-			tlg[1] = 5;     // Func.
+			tlg[1] = 0x05;  // Func.
 
 			tlg[2] = (addr >> 8) & 0xFF;    // Data
 			tlg[3] = addr & 0xFF;      		// Data
@@ -171,27 +176,171 @@ class Waterkotte extends utils.Adapter {
 			tlg[6] = (crc16 >> 8) & 0xFF;
 			tlg[7] = crc16 & 0xFF;
 
-			/*
 			// send Waterkotte telegram
 			commPort.write(tlg, (err) => {
 				if (err) {
-					this.log.warn('Waterkotte boolean error sending data: ' + err);
+					this.log.warn('Waterkotte boolean data error sending: ' + err);
+					this.statemachine('idle');
 					return;
 				}
 			});
-	*/
-			this.log.info('Waterkotte change value: ' + tlg);
+
+			this.log.info('Waterkotte boolean value change: ' + tlg);
+			this.statemachine('receive');
 
 		} catch (e) {
 			// Logfile
-			this.log.error('Waterkotte boolean sent error: ' + e);
+			this.log.error('Waterkotte boolean data sent error: ' + e);
+			this.statemachine('idle');
 		}
 	}
 
+	/*
+	*	write a word value to waterkotte
+	* 	enum == 2
+	*/
+	async setWordValue(addr, value) {
+		try
+		{
+			const tlg = [];
 
+			tlg[0] = 1;     // Adr
+			tlg[1] = 0x06;  // Func.
+
+			tlg[2] = (addr >> 8) & 0xFF;    // Data
+			tlg[3] = addr & 0xFF;      		// Data
+
+			tlg[4] = (value >> 8) & 0xFF;   // Data
+			tlg[5] = value & 0xFF;      	// Data
+
+			const crc16 = WkTools.calcCRC16(tlg, 6);
+			tlg[6] = (crc16 >> 8) & 0xFF;
+			tlg[7] = crc16 & 0xFF;
+
+			// send Waterkotte telegram
+			commPort.write(tlg, (err) => {
+				if (err) {
+					this.log.warn('Waterkotte word data error sending: ' + err);
+					this.statemachine('idle');
+					return;
+				}
+			});
+
+			this.log.info('Waterkotte word value change: ' + tlg);
+			this.statemachine('receive');
+
+		} catch (e) {
+			// Logfile
+			this.log.error('Waterkotte word data sent error: ' + e);
+			this.statemachine('idle');
+		}
+	}
 
 	/*
-	 *   serial communiation eltako
+	*	write a real value to waterkotte
+	* 	enum == 3
+	*/
+	async setRealValue(addr, value) {
+		try
+		{
+			const tlg = [];
+
+			tlg[0] = 1;     // Adr
+			tlg[1] = 0x10;  // Func.
+
+			tlg[2] = (addr >> 8) & 0xFF;    // Data
+			tlg[3] = addr & 0xFF;      		// Data
+			tlg[4] = 0;      				// Quantity HiByte
+			tlg[5] = 2;      				// Quantity LoByte
+			tlg[6] = 4;      				// value byte size
+
+			const buf = Buffer.allocUnsafe(4);
+			buf.writeFloatBE(value, 0);
+
+			/*
+				bei buf.read/write Float hat
+				buf0 - HighByte ... buf3 - LowByte
+
+				Adr0 -> buf[2]
+				Adr1 -> buf[3]
+				Adr2 -> buf[0]
+				Adr3 -> buf[1]
+			*/
+
+			tlg[7]  = buf[2];
+			tlg[8]  = buf[3];
+			tlg[9]  = buf[0];
+			tlg[10] = buf[1];
+
+			const crc16 = WkTools.calcCRC16(tlg, 11);
+			tlg[11] = (crc16 >> 8) & 0xFF;
+			tlg[12] = crc16 & 0xFF;
+
+			// send Waterkotte telegram
+			commPort.write(tlg, (err) => {
+				if (err) {
+					this.log.warn('Waterkotte real data error sending: ' + err);
+					this.statemachine('idle');
+					return;
+				}
+			});
+
+			this.log.info('Waterkotte real value change: ' + tlg);
+			this.statemachine('receive');
+
+		} catch (e) {
+			// Logfile
+			this.log.error('Waterkotte real data sent error: ' + e);
+			this.statemachine('idle');
+		}
+	}
+
+	/*
+	*	write a time value to waterkotte
+	* 	enum == 4
+	*/
+	async setTimeValue(addr, value) {
+		try
+		{
+			const tlg = [];
+
+			tlg[0] = 1;     // Adr
+			tlg[1] = 0x10;  // Func.
+
+			tlg[2] = (addr >> 8) & 0xFF;    // Data
+			tlg[3] = addr & 0xFF;      		// Data
+			tlg[4] = 0;      				// Quantity HiByte
+			tlg[5] = 1;      				// Quantity LoByte
+			tlg[6] = 2;      				// value byte size
+
+			tlg[7]  = (WkTools.hour_of_time(value)) & 0xFF;
+			tlg[8]  = (WkTools.min_of_time(value)) & 0xFF;
+
+			const crc16 = WkTools.calcCRC16(tlg, 9);
+			tlg[9] = (crc16 >> 8) & 0xFF;
+			tlg[10] = crc16 & 0xFF;
+
+			// send Waterkotte telegram
+			commPort.write(tlg, (err) => {
+				if (err) {
+					this.log.warn('Waterkotte time data error sending: ' + err);
+					this.statemachine('idle');
+					return;
+				}
+			});
+
+			this.log.info('Waterkotte time value change: ' + tlg);
+			this.statemachine('receive');
+
+		} catch (e) {
+			// Logfile
+			this.log.error('Waterkotte time data sent error: ' + e);
+			this.statemachine('idle');
+		}
+	}
+
+	/*
+	 *   serial communiation waterkotte
 	 */
 	async communication() {
 
@@ -214,6 +363,9 @@ class Waterkotte extends utils.Adapter {
 				}
 				if (parseRequestNum == 3) {
 					this.parseRequest3(data);
+				}
+				if (parseRequestNum == 4) {
+					this.parseRequest4(data);
 				}
 			});
 
@@ -243,7 +395,7 @@ class Waterkotte extends utils.Adapter {
 	/*
 	*	StateMachine
 	*/
-	statemachine(newStep) {
+	async statemachine(newStep) {
 
 		//adapter.log.info('currentStep: ' + currentStep + ' --> newStep: ' + newStep);
 
@@ -260,7 +412,7 @@ class Waterkotte extends utils.Adapter {
 				break;
 
 			case 'idle':
-				if (queue.length > 0) {
+				if (commQueue.empty() === false) {
 					this.statemachine('wait');
 				}
 				break;
@@ -269,12 +421,15 @@ class Waterkotte extends utils.Adapter {
 				setTimeout( ()=>{
 					// this.log.info('send delay');
 					this.statemachine('send');
-				}, 500);
+				}, 600);
 				break;
 
 			case 'send':
-				if (queue.length > 0) {
-					parseRequestNum = queue.shift();
+				if (commQueue.empty() === false) {
+
+					const sendData = commQueue.dequeue();
+					parseRequestNum = sendData[0];
+
 					if (parseRequestNum == 1) {
 						this.requestData1();
 					}
@@ -283,6 +438,22 @@ class Waterkotte extends utils.Adapter {
 					}
 					if (parseRequestNum == 3) {
 						this.requestData3();
+					}
+					if (parseRequestNum == 4) {
+						switch(sendData[1]) {
+							case 1:
+								this.setIntegerValue(sendData[2], sendData[3]);
+								break;
+							case 2:
+								this.setWordValue(sendData[2], sendData[3]);
+								break;
+							case 3:
+								this.setRealValue(sendData[2], sendData[3]);
+								break;
+							case 4:
+								this.setTimeValue(sendData[2], sendData[3]);
+								break;
+						}
 					}
 				} else {
 					this.log.warn('queue empty');
@@ -315,7 +486,7 @@ class Waterkotte extends utils.Adapter {
 		// Start timer
 		timerID1 = setInterval( () => {
 			//adapter.log.info('start request1 timer');
-			queue.push(1);
+			commQueue.enqueue([1, 0, 0, 0]);
 			if (currentStep == 'idle') {
 				this.statemachine('wait');
 			}
@@ -323,7 +494,7 @@ class Waterkotte extends utils.Adapter {
 
 		timerID2 = setInterval( () => {
 			//adapter.log.info('start request2 timer');
-			queue.push(2);
+			commQueue.enqueue([2, 0, 0, 0]);
 			if (currentStep == 'idle') {
 				this.statemachine('wait');
 			}
@@ -331,7 +502,7 @@ class Waterkotte extends utils.Adapter {
 
 		timerID3 = setInterval( () => {
 			//adapter.log.info('start request3 timer');
-			queue.push(3);
+			commQueue.enqueue([3, 0, 0, 0]);
 			if (currentStep == 'idle') {
 				this.statemachine('wait');
 			}
@@ -565,6 +736,26 @@ class Waterkotte extends utils.Adapter {
 			this.setState('operation.OpPoolWater', WkTools.convert754(data[111], data[112], data[109], data[110]), true);
 			this.setState('operation.OpSolar', WkTools.convert754(data[115], data[116], data[113], data[114]), true);
 
+
+			this.setState('failure.Time', data[128] + ':' + data[126] + ':' + data[124], true);
+			this.setState('failure.Date', data[156] + '.' + (data[158]+1) + ':' + (data[160]-100), true);
+			this.setState('failure.Date', data[156] + '.' + (data[158]+1) + ':' + (data[160]-100), true);
+
+			this.setState('failure.Mode', WkTools.bytes_to_integer(data[175], data[176]), true);
+			this.setState('failure.DOBuffer', WkTools.bytes_to_integer(data[177], data[178]), true);
+			this.setState('failure.DIBuffer', WkTools.bytes_to_integer(data[179], data[178]), true);
+			this.setState('failure.Sensors', WkTools.bytes_to_integer(data[181], data[182]), true);
+
+			this.setState('failure.PressureEvaporation', WkTools.convert754(data[185], data[186], data[183], data[184]), true);
+			this.setState('failure.PressureCondensation', WkTools.convert754(data[189], data[190], data[187], data[188]), true);
+			this.setState('failure.ReturnTempCurrent', WkTools.convert754(data[193], data[194], data[191], data[192]), true);
+			this.setState('failure.FlowTemp', WkTools.convert754(data[197], data[198], data[195], data[196]), true);
+			this.setState('failure.HeatSourceIn', WkTools.convert754(data[201], data[202], data[199], data[200]), true);
+			this.setState('failure.HeatSourceOut', WkTools.convert754(data[205], data[206], data[203], data[204]), true);
+			this.setState('failure.SuctionGasTemp', WkTools.convert754(data[209], data[210], data[207], data[208]), true);
+			this.setState('failure.OutdoorTemp', WkTools.convert754(data[213], data[214], data[211], data[212]), true);
+			this.setState('failure.DomesticWaterTemp', WkTools.convert754(data[217], data[218], data[215], data[216]), true);
+
 		} else {
 			this.log.warn('CRC error: ' + crc16 + ' <> ' + data[len+3] + ' ' + data[len+4]);
 		}
@@ -585,7 +776,59 @@ class Waterkotte extends utils.Adapter {
 		const len = data[2];
 		const crc16 = WkTools.calcCRC16(data, len+3);
 		if (((crc16 & 0xff) === data[len+4]) && (((crc16 >> 8) & 0xff) === data[len+3])) {
-			//
+			this.setState('service.OffsetND', WkTools.convert754(data[5], data[6], data[3], data[4]), true);
+			this.setState('service.OffsetHD', WkTools.convert754(data[9], data[10], data[7], data[8]), true);
+			this.setState('service.OffsetHD', WkTools.bytes_to_integer(data[11], data[12]), true);
+
+			this.setState('warnings.Failure', WkTools.bytes_to_integer(data[13], data[14]), true);
+			this.setState('warnings.Interruptions', WkTools.bytes_to_integer(data[15], data[16]), true);
+			this.setState('warnings.Inputs', WkTools.bytes_to_integer(data[17], data[18]), true);
+			this.setState('warnings.Outputs', WkTools.bytes_to_integer(data[19], data[20]), true);
+			this.setState('warnings.Sensors', WkTools.bytes_to_integer(data[21], data[22]), true);
+			this.setState('warnings.Others', WkTools.bytes_to_integer(data[23], data[24]), true);
+			this.setState('warnings.SupressInputs', WkTools.bytes_to_integer(data[25], data[26]), true);
+			this.setState('warnings.SupressOutputs', WkTools.bytes_to_integer(data[27], data[28]), true);
+			this.setState('warnings.SupressSensorik', WkTools.bytes_to_integer(data[29], data[30]), true);
+			this.setState('warnings.SupressOthers', WkTools.bytes_to_integer(data[31], data[32]), true);
+
+
+			this.setState('energy.ElectricPower', WkTools.convert754(data[67], data[68], data[65], data[66]), true);
+			this.setState('energy.ThermicPower', WkTools.convert754(data[71], data[72], data[69], data[70]), true);
+			this.setState('energy.COP', WkTools.convert754(data[75], data[76], data[73], data[74]), true);
+
+			this.setState('energy.SelectYear', WkTools.bytes_to_integer(data[77], data[78]), true);
+			this.setState('energy.SelectType', WkTools.bytes_to_integer(data[79], data[80]), true);
+			this.setState('energy.SelectValue', WkTools.convert754(data[83], data[84], data[81], data[82]), true);
+			this.setState('energy.PowerPunp', WkTools.convert754(data[87], data[88], data[85], data[86]), true);
+
+			let firmversion = '';
+			for (let i = 0; i < 5; i++) {
+				firmversion += String.fromCharCode(data[90 + 2*i]);
+				firmversion += String.fromCharCode(data[89 + 2*i]);
+			}
+			this.setState('info.Version', firmversion, true);
+
+			let firmdate = '';
+			for (let i = 0; i < 6; i++) {
+				firmdate += String.fromCharCode(data[106 + 2*i]);
+				firmdate += String.fromCharCode(data[105 + 2*i]);
+			}
+			this.setState('info.Date', firmdate, true);
+
+			let model = '';
+			for (let i = 0; i < 5; i++) {
+				model += String.fromCharCode(data[122 + 2*i]);
+				model += String.fromCharCode(data[121 + 2*i]);
+			}
+			this.setState('info.Model', model, true);
+
+			let serial = '';
+			for (let i = 0; i < 5; i++) {
+				serial += String.fromCharCode(data[138 + 2*i]);
+				serial += String.fromCharCode(data[137 + 2*i]);
+			}
+			this.setState('info.Serial', serial, true);
+
 		} else {
 			this.log.warn('CRC error: ' + crc16 + ' <> ' + data[len+3] + ' ' + data[len+4]);
 		}
@@ -593,6 +836,22 @@ class Waterkotte extends utils.Adapter {
 		// finish parsing
 		this.statemachine('idle');
 	}
+
+	/*
+	* Parse requested data4
+	*/
+	// eslint-disable-next-line no-unused-vars
+	async parseRequest4(data) {
+
+		// reset comm timeout
+		clearTimeout(recTimeout);
+
+		// keine Ahnung was hier zurückkommt...
+
+		// finish parsing
+		this.statemachine('idle');
+	}
+
 
 	/*
 	* create Waterkotte state list
@@ -805,6 +1064,169 @@ class Waterkotte extends utils.Adapter {
 				}
 			});
 		}
+
+		// Failure
+		path = 'failure';
+		this.setObjectNotExistsAsync(path, {
+			type: 'channel',
+			common: {
+				name: '(11) Ausfalldaten'
+			},
+			native: {}
+		});
+
+		for (const i in StateList.Failure) {
+
+			const subpath = path + '.' + StateList.Failure[i].Name;
+			this.setObjectNotExistsAsync(subpath, {
+				type: 'state',
+				common:
+				{
+					name: '('+ i + ') ' + StateList.Failure[i].Desc,
+					type: StateList.Failure[i].Type,
+					role: StateList.Failure[i].Role,
+					read:  true,
+					write: StateList.Failure[i].Write.Enable,
+					def: ''
+				},
+				native: {
+					'Write': StateList.Failure[i].Write.Enable,
+					'Adr':  StateList.Failure[i].Write.Adr,
+					'Enum': StateList.Failure[i].Write.Enum
+				}
+			});
+		}
+
+		// Service
+		path = 'service';
+		this.setObjectNotExistsAsync(path, {
+			type: 'channel',
+			common: {
+				name: '(12) Servicedaten'
+			},
+			native: {}
+		});
+
+		for (const i in StateList.Service) {
+
+			const subpath = path + '.' + StateList.Service[i].Name;
+			this.setObjectNotExistsAsync(subpath, {
+				type: 'state',
+				common:
+				{
+					name: '('+ i + ') ' + StateList.Service[i].Desc,
+					type: StateList.Service[i].Type,
+					role: StateList.Service[i].Role,
+					read:  true,
+					write: StateList.Service[i].Write.Enable,
+					def: ''
+				},
+				native: {
+					'Write': StateList.Service[i].Write.Enable,
+					'Adr':  StateList.Service[i].Write.Adr,
+					'Enum': StateList.Service[i].Write.Enum
+				}
+			});
+		}
+
+		// Warnings
+		path = 'warnings';
+		this.setObjectNotExistsAsync(path, {
+			type: 'channel',
+			common: {
+				name: '(13) Warn/Unterbr/Aus'
+			},
+			native: {}
+		});
+
+		for (const i in StateList.Warnings) {
+
+			const subpath = path + '.' + StateList.Warnings[i].Name;
+			this.setObjectNotExistsAsync(subpath, {
+				type: 'state',
+				common:
+				{
+					name: '('+ i + ') ' + StateList.Warnings[i].Desc,
+					type: StateList.Warnings[i].Type,
+					role: StateList.Warnings[i].Role,
+					read:  true,
+					write: StateList.Warnings[i].Write.Enable,
+					def: ''
+				},
+				native: {
+					'Write': StateList.Warnings[i].Write.Enable,
+					'Adr':  StateList.Warnings[i].Write.Adr,
+					'Enum': StateList.Warnings[i].Write.Enum
+				}
+			});
+		}
+
+		// Energy
+		path = 'energy';
+		this.setObjectNotExistsAsync(path, {
+			type: 'channel',
+			common: {
+				name: '(15) Energieeffizienz'
+			},
+			native: {}
+		});
+
+		for (const i in StateList.Energy) {
+
+			const subpath = path + '.' + StateList.Energy[i].Name;
+			this.setObjectNotExistsAsync(subpath, {
+				type: 'state',
+				common:
+				{
+					name: '('+ i + ') ' + StateList.Energy[i].Desc,
+					type: StateList.Energy[i].Type,
+					role: StateList.Energy[i].Role,
+					read:  true,
+					write: StateList.Energy[i].Write.Enable,
+					def: ''
+				},
+				native: {
+					'Write': StateList.Energy[i].Write.Enable,
+					'Adr':  StateList.Energy[i].Write.Adr,
+					'Enum': StateList.Energy[i].Write.Enum
+				}
+			});
+		}
+
+		// Info
+		path = 'info';
+		this.setObjectNotExistsAsync(path, {
+			type: 'channel',
+			common: {
+				name: '(16) Information'
+			},
+			native: {}
+		});
+
+		for (const i in StateList.Info) {
+
+			const subpath = path + '.' + StateList.Info[i].Name;
+			this.setObjectNotExistsAsync(subpath, {
+				type: 'state',
+				common:
+				{
+					name: '('+ i + ') ' + StateList.Info[i].Desc,
+					type: StateList.Info[i].Type,
+					role: StateList.Info[i].Role,
+					read:  true,
+					write: StateList.Info[i].Write.Enable,
+					def: ''
+				},
+				native: {
+					'Write': StateList.Info[i].Write.Enable,
+					'Adr':  StateList.Info[i].Write.Adr,
+					'Enum': StateList.Info[i].Write.Enum
+				}
+			});
+		}
+
+
+
 
 	}
 }
