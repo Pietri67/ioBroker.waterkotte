@@ -91,6 +91,19 @@
 			  "def": ""
 			},
 			"native": {}
+		  },
+		  {
+			"_id": "info.tocnt",
+			"type": "state",
+			"common": {
+			  "role": "value",
+			  "name": "monitor timeout requests",
+			  "type": "number",
+			  "read": true,
+			  "write": false,
+			  "def": ""
+			},
+			"native": {}
 		  }
 
 	]	

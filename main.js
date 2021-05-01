@@ -28,6 +28,7 @@ let timerID1 = 0;
 let timerID2 = 0;
 let timerID3 = 0;
 let recTimeout = 0;
+let cntTimeout = 0;
 
 // Execution queue
 let parseRequestNum = 1;
@@ -407,6 +408,8 @@ class Waterkotte extends utils.Adapter {
 
 			case 'init':
 				// initialize
+				cntTimeout = 0;
+				this.setState('info.tocnt', cntTimeout, true);
 				this.startTimer();
 				this.statemachine('idle');
 				break;
@@ -463,6 +466,8 @@ class Waterkotte extends utils.Adapter {
 
 			case 'receive':
 				recTimeout = setTimeout( ()=>{
+					cntTimeout = cntTimeout + 1;
+					this.setState('info.tocnt', cntTimeout, true);
 					this.log.warn('Waterkotte timeout receive communication');
 					this.statemachine('idle');
 				}, this.config.timeout);
@@ -965,6 +970,10 @@ class Waterkotte extends utils.Adapter {
 					'Enum': StateList.Cooling[i].Write.Enum
 				}
 			});
+
+			if (StateList.Cooling[i].Write.Enable === true) {
+				this.subscribeStates(subpath);
+			}
 		}
 
 
@@ -998,6 +1007,10 @@ class Waterkotte extends utils.Adapter {
 					'Enum': StateList.HotWater[i].Write.Enum
 				}
 			});
+
+			if (StateList.HotWater[i].Write.Enable === true) {
+				this.subscribeStates(subpath);
+			}
 		}
 
 
@@ -1063,6 +1076,10 @@ class Waterkotte extends utils.Adapter {
 					'Enum': StateList.Operation[i].Write.Enum
 				}
 			});
+
+			if (StateList.Operation[i].Write.Enable === true) {
+				this.subscribeStates(subpath);
+			}
 		}
 
 		// Failure
@@ -1095,6 +1112,10 @@ class Waterkotte extends utils.Adapter {
 					'Enum': StateList.Failure[i].Write.Enum
 				}
 			});
+
+			if (StateList.Failure[i].Write.Enable === true) {
+				this.subscribeStates(subpath);
+			}
 		}
 
 		// Service
@@ -1127,6 +1148,10 @@ class Waterkotte extends utils.Adapter {
 					'Enum': StateList.Service[i].Write.Enum
 				}
 			});
+
+			if (StateList.Service[i].Write.Enable === true) {
+				this.subscribeStates(subpath);
+			}
 		}
 
 		// Warnings
@@ -1159,6 +1184,10 @@ class Waterkotte extends utils.Adapter {
 					'Enum': StateList.Warnings[i].Write.Enum
 				}
 			});
+
+			if (StateList.Warnings[i].Write.Enable === true) {
+				this.subscribeStates(subpath);
+			}
 		}
 
 		// Energy
@@ -1191,6 +1220,10 @@ class Waterkotte extends utils.Adapter {
 					'Enum': StateList.Energy[i].Write.Enum
 				}
 			});
+
+			if (StateList.Energy[i].Write.Enable === true) {
+				this.subscribeStates(subpath);
+			}
 		}
 
 		// Info
@@ -1223,11 +1256,11 @@ class Waterkotte extends utils.Adapter {
 					'Enum': StateList.Info[i].Write.Enum
 				}
 			});
+
+			if (StateList.Info[i].Write.Enable === true) {
+				this.subscribeStates(subpath);
+			}
 		}
-
-
-
-
 	}
 }
 
