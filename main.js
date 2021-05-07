@@ -743,8 +743,7 @@ class Waterkotte extends utils.Adapter {
 
 
 			this.setState('failure.Time', data[128] + ':' + data[126] + ':' + data[124], true);
-			this.setState('failure.Date', data[156] + '.' + (data[158]+1) + ':' + (data[160]-100), true);
-			this.setState('failure.Date', data[156] + '.' + (data[158]+1) + ':' + (data[160]-100), true);
+			this.setState('failure.Date', data[156] + '.' + (data[158]+1) + '.' + (data[160]-100), true);
 
 			this.setState('failure.Mode', WkTools.bytes_to_integer(data[175], data[176]), true);
 			this.setState('failure.DOBuffer', WkTools.bytes_to_integer(data[177], data[178]), true);
