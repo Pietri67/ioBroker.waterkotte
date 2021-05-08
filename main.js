@@ -352,7 +352,7 @@ class Waterkotte extends utils.Adapter {
 			commParser.on('data' , (data) => {
 
 				// Logfile
-				this.log.info('Waterkotte response: ' + WkTools.DataToString(data));
+				//this.log.info('Waterkotte response: ' + WkTools.DataToString(data));
 				// update info.lastmsg
 				this.setState('info.lastmsg', WkTools.DataToString(data), true);
 
@@ -551,7 +551,7 @@ class Waterkotte extends utils.Adapter {
 					return;
 				}
 			});
-			this.log.info('Waterkotte request1: ' + tlg);
+			//this.log.info('Waterkotte request1: ' + tlg);
 			this.statemachine('receive');
 
 		} catch (e) {
@@ -589,7 +589,7 @@ class Waterkotte extends utils.Adapter {
 					return;
 				}
 			});
-			this.log.info('Waterkotte request2: ' + tlg);
+			//this.log.info('Waterkotte request2: ' + tlg);
 			this.statemachine('receive');
 
 		} catch (e) {
@@ -627,7 +627,7 @@ class Waterkotte extends utils.Adapter {
 					return;
 				}
 			});
-			this.log.info('Waterkotte request3: ' + tlg);
+			//this.log.info('Waterkotte request3: ' + tlg);
 			this.statemachine('receive');
 
 		} catch (e) {
@@ -782,7 +782,7 @@ class Waterkotte extends utils.Adapter {
 		if (((crc16 & 0xff) === data[len+4]) && (((crc16 >> 8) & 0xff) === data[len+3])) {
 			this.setState('service.OffsetND', WkTools.convert754(data[5], data[6], data[3], data[4]), true);
 			this.setState('service.OffsetHD', WkTools.convert754(data[9], data[10], data[7], data[8]), true);
-			this.setState('service.OffsetHD', WkTools.bytes_to_integer(data[11], data[12]), true);
+			this.setState('service.NDState', WkTools.bytes_to_integer(data[11], data[12]), true);
 
 			this.setState('warnings.Failure', WkTools.bytes_to_integer(data[13], data[14]), true);
 			this.setState('warnings.Interruptions', WkTools.bytes_to_integer(data[15], data[16]), true);
