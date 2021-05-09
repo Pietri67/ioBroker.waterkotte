@@ -165,7 +165,7 @@ class Waterkotte extends utils.Adapter {
 			tlg[2] = (addr >> 8) & 0xFF;    // Data
 			tlg[3] = addr & 0xFF;      		// Data
 
-			if (value === 0) {
+			if (value == 0) {
 				tlg[4] = 0x00;      // Data
 			} else {
 				tlg[4] = 0xFF;      // Data
