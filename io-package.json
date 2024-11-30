@@ -1,0 +1,139 @@
+{
+	"common": {
+		"name": "waterkotte",
+		"version": "0.0.1",
+		"news": {
+			"0.0.1": {
+				"en": "initial release",
+				"de": "Erstveröffentlichung",
+				"ru": "Начальная версия",
+				"pt": "lançamento inicial",
+				"nl": "Eerste uitgave",
+				"fr": "Première version",
+				"it": "Versione iniziale",
+				"es": "Versión inicial",
+				"pl": "Pierwsze wydanie",
+				"uk": "Початкова версія",
+				"zh-cn": "首次出版"
+			}
+		},
+		"titleLang": {
+			"en": "Waterkotte WPCU.C",
+			"de": "Waterkotte WPCU.C",
+			"ru": "Водяной котте WPCU.C",
+			"pt": "Waterkotte WPCU.C",
+			"nl": "Waterkotte WPCU.C",
+			"fr": "Waterkotte WPCU.C",
+			"it": "Waterkotte WPCU.C",
+			"es": "Waterkotte WPCU.C",
+			"pl": "Waterkotte WPCU.C",
+			"uk": "Waterkotte WPCU.C",
+			"zh-cn": "Waterkotte WPCU.C"
+		},
+		"desc": {
+			"en": "Communication WPCU.C Waterkotte",
+			"de": "Kommunikation WPCU.C Waterkotte",
+			"ru": "Связь WPCU.C Waterkotte",
+			"pt": "Comunicação WPCU.C Waterkotte",
+			"nl": "Communicatie WPCU.C Waterkotte",
+			"fr": "Communication WPCU.C Waterkotte",
+			"it": "Comunicazione WPCU.C Waterkotte",
+			"es": "Comunicación WPCU.C Waterkotte",
+			"pl": "Komunikacja WPCU.C Waterkotte",
+			"uk": "Комунікація WPCU.C Waterkotte",
+			"zh-cn": "通讯 WPCU.C Waterkotte"
+		},
+		"authors": [
+			"Torsten Voigt <torsten.voigt@nobibum.de>"
+		],
+		"keywords": [
+			"ioBroker",
+			"template",
+			"Smart Home",
+			"home automation"
+		],
+		"licenseInformation": {
+			"type": "free",
+			"license": "MIT"
+		},
+		"platform": "Javascript/Node.js",
+		"icon": "waterkotte.png",
+		"enabled": true,
+		"extIcon": "https://raw.githubusercontent.com/Pietri67/ioBroker.waterkotte/main/admin/waterkotte.png",
+		"readme": "https://github.com/Pietri67/ioBroker.waterkotte/blob/main/README.md",
+		"loglevel": "info",
+		"tier": 3,
+		"mode": "daemon",
+		"type": "protocols",
+		"compact": true,
+		"connectionType": "local",
+		"dataSource": "poll",
+		"adminUI": {
+			"config": "materialize"
+		},
+		"dependencies": [
+			{
+				"js-controller": ">=6.0.11"
+			}
+		],
+		"globalDependencies": []
+	},
+	"native": {
+		"usbport": "/dev/ttyUSB0",
+		"baudrate": 9600,
+		"timeout": 30000,
+		"repeat1": 1,
+		"repeat2": 5,
+		"repeat3": 5
+	},
+	"objects": [],
+	"instanceObjects": [
+		{
+			"_id": "info",
+			"type": "channel",
+			"common": {
+				"name": "Information"
+			},
+			"native": {}
+		},
+		{
+			"_id": "info.connection",
+			"type": "state",
+			"common": {
+			  "role": "indicator.connected",
+			  "name": "If connected to Waterkotte",
+			  "type": "boolean",
+			  "read": true,
+			  "write": false,
+			  "def": false
+			},
+			"native": {}
+		  },
+		  {
+			  "_id": "info.lastmsg",
+			  "type": "state",
+			  "common": {
+				"role": "text",
+				"name": "last received Waterkotte message",
+				"type": "string",
+				"read": true,
+				"write": false,
+				"def": ""
+			  },
+			  "native": {}
+			},
+			{
+			  "_id": "info.tocnt",
+			  "type": "state",
+			  "common": {
+				"role": "value",
+				"name": "monitor timeout requests",
+				"type": "number",
+				"read": true,
+				"write": false,
+				"def": ""
+			  },
+			  "native": {}
+			}
+	  ]
+}
