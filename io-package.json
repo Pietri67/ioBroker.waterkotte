@@ -108,32 +108,32 @@
 			  "def": false
 			},
 			"native": {}
-		  },
-		  {
-			  "_id": "info.lastmsg",
-			  "type": "state",
-			  "common": {
+		},
+		{
+			"_id": "info.lastmsg",
+			"type": "state",
+			"common": {
 				"role": "text",
 				"name": "last received Waterkotte message",
 				"type": "string",
 				"read": true,
 				"write": false,
 				"def": ""
-			  },
-			  "native": {}
 			},
-			{
-			  "_id": "info.tocnt",
-			  "type": "state",
-			  "common": {
+			"native": {}
+		},
+		{
+			"_id": "info.tocnt",
+			"type": "state",
+			"common": {
 				"role": "value",
 				"name": "monitor timeout requests",
 				"type": "number",
 				"read": true,
 				"write": false,
-				"def": ""
-			  },
-			  "native": {}
-			}
-	  ]
+				"def": 0
+			},
+			"native": {}
+		}
+	]
 }

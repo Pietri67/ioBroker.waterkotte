@@ -1,0 +1,1166 @@
+{
+    "Common": {
+        "1": {
+            "Name": "OutdoorTemp",
+            "Desc": "Aussentemperatur",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Def": 0, 
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+
+        },
+        "2": {
+            "Name": "OutdoorTemp1h",
+            "Desc": "T Aussen 1h",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Def": 0,
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "3": {
+            "Name": "OutdoorTemp24h",
+            "Desc": "T Aussen 24h",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Def": 0,
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "4": {
+            "Name": "HeatSourceIn",
+            "Desc": "T Quelle Ein",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Def": 0,
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "5": {
+            "Name": "HeatSourceOut",
+            "Desc": "T Quelle Aus",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Def": 0,
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "6": {
+            "Name": "EvaporationTemp",
+            "Desc": "T Verdampfer",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Def": 0,
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "7": {
+            "Name": "SuctionGasTemp",
+            "Desc": "T Saugleitung",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Def": 0,
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "8": {
+            "Name": "EvaporationPress",
+            "Desc": "p Verdampfer",
+            "Type": "number",
+            "Role": "value.pressure",
+            "Def": 0,
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "9": {
+            "Name": "ReturnTempTarget",
+            "Desc": "T Rücklauf Soll",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Def": 0,
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "10": {
+            "Name": "ReturnTempCurrent",
+            "Desc": "T Rücklauf Ist",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Def": 0,
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "11": {
+            "Name": "FlowTemp",
+            "Desc": "T Vorlauf",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Def": 0,
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "12": {
+            "Name": "CondensationTemp",
+            "Desc": "T Kondensator",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Def": 0,
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "13": {
+            "Name": "CondensationPress",
+            "Desc": "p Kondensator",
+            "Type": "number",
+            "Role": "value.pressure",
+            "Def": 0,
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "14": {
+            "Name": "RoomTemp",
+            "Desc": "T Raum Ist",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Def": 0,
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "15": {
+            "Name": "RoomTemp1h",
+            "Desc": "T Raum 1h",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Def": 0,
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "16": {
+            "Name": "DomesticWaterTemp",
+            "Desc": "T Warmwasser Ist",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Def": 0,
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }
+    },
+
+    "Heating": {
+        "1": {
+            "Name": "Off",
+            "Desc": "Abschaltung Ein/Aus",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": true,
+                "Adr" : 1009,    
+                "Enum": 1     
+            }
+        },
+        "2": {
+            "Name": "Begin",
+            "Desc": "Abschaltung Beginn",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": true,
+                "Adr" : 1025,
+                "Enum": 4     
+            }
+        },
+        "3": {
+            "Name": "End",
+            "Desc": "Abschaltung Ende",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": true,
+                "Adr" : 1041,
+                "Enum": 4     
+            }
+        },
+        "4": {
+            "Name": "SetPoint",
+            "Desc": "T aussen Einsatz",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": true,
+                "Adr" : 1057,
+                "Enum": 3     
+            }
+        },
+        "5": {
+            "Name": "SetPointBaseTemp",
+            "Desc": "T Rück Einsatz",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": true,
+                "Adr" : 1089,
+                "Enum": 3     
+            }
+        },
+        "6": {
+            "Name": "Gradient",
+            "Desc": "Kennl. Steigung",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": true,
+                "Adr" : 1121,
+                "Enum": 3     
+            }
+        },
+        "7": {
+            "Name": "Limit",
+            "Desc": "Kennl. Limit",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },  
+        "8": {
+            "Name": "ReturnTempCurrent",
+            "Desc": "T Rücklauf Ist",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "9": {
+            "Name": "ReturnTempTarget",
+            "Desc": "T Rücklauf Soll",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "10": {
+            "Name": "Hysteresis",
+            "Desc": "Hysterese",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": true,
+                "Adr" : 1249,
+                "Enum": 3     
+            }
+        },
+        "11": {
+            "Name": "RoomTempTarget",
+            "Desc": "T Raum Soll",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": true,
+                "Adr" : 1281,
+                "Enum": 3     
+            }
+        },
+        "12": {
+            "Name": "RoomTempFactor",
+            "Desc": "Raumeinfluss",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": true,
+                "Adr" : 1313,
+                "Enum": 1     
+            }
+        },
+        "13": {
+            "Name": "SetpointShutOff",
+            "Desc": "Sollwertänderung Ein/Aus",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": true,
+                "Adr" : 1329,
+                "Enum": 1     
+            }
+        },
+        "14": {
+            "Name": "SetpointBegin",
+            "Desc": "Sollwertänderung Beginn",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": true,
+                "Adr" : 1345,
+                "Enum": 4     
+            }
+        },
+        "15": {
+            "Name": "SetpointEnd",
+            "Desc": "Sollwertänderung Ende",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": true,
+                "Adr" : 1361,
+                "Enum": 4     
+            }
+        },
+        "16": {
+            "Name": "SetpointSum",
+            "Desc": "Sollwertänderung Betrag",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": true,
+                "Adr" : 1377,
+                "Enum": 3    
+            }
+        },
+        "17": {
+            "Name": "StepMode",
+            "Desc": "Stufen Modus",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "18": {
+            "Name": "StepModeDiff",
+            "Desc": "Stufen Modus max. Diff.",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }
+    },
+
+    "Cooling": {
+        "1": {
+            "Name": "Off",
+            "Desc": "Abschaltung Ein/Aus",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": true,
+                "Adr" : 1457,
+                "Enum": 1     
+            }
+        },
+        "2": {
+            "Name": "Begin",
+            "Desc": "Abschaltung Beginn",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": true,
+                "Adr" : 1473,
+                "Enum": 4     
+            }
+        },
+        "3": {
+            "Name": "End",
+            "Desc": "Abschaltung Ende",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": true,
+                "Adr" : 1489,
+                "Enum": 4     
+            }
+        },
+        "4": {
+            "Name": "SetPoint",
+            "Desc": "T aussen Einsatz",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": true,
+                "Adr" : 1505,
+                "Enum": 4     
+            }
+        },
+        "5": {
+            "Name": "ReturnTempCurrent",
+            "Desc": "T Rücklauf Ist",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "6": {
+            "Name": "ReturnTempTarget",
+            "Desc": "T Rücklauf Soll",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": true,
+                "Adr" : 1569,
+                "Enum": 3     
+            }
+        },
+        "7": {
+            "Name": "Hysteresis",
+            "Desc": "Hysterese",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": true,
+                "Adr" : 1601,
+                "Enum": 3     
+            }
+        }
+    }, 
+ 
+    "HotWater": {
+        "1": {
+            "Name": "Off",
+            "Desc": "Abschaltung Ein/Aus",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": true,
+                "Adr" : 1633,
+                "Enum": 1     
+            }
+        },
+        "2": {
+            "Name": "Begin",
+            "Desc": "Abschaltung Beginn",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": true,
+                "Adr" : 1649,
+                "Enum": 4     
+            }
+        },
+        "3": {
+            "Name": "End",
+            "Desc": "Abschaltung Ende",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": true,
+                "Adr" : 1665,
+                "Enum": 4     
+            }
+        },
+        "4": {
+            "Name": "WaterTempCurrent",
+            "Desc": "T Rücklauf Ist",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "5": {
+            "Name": "WaterTempTarget",
+            "Desc": "T Rücklauf Soll",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": true,
+                "Adr" : 1713,
+                "Enum": 3     
+            }
+        },
+        "6": {
+            "Name": "Hysteresis",
+            "Desc": "Hysterese",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": true,
+                "Adr" : 1745,
+                "Enum": 3     
+            }
+        },
+        "7": {
+            "Name": "Legionella",
+            "Desc": "Legionella",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable" : false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "8": {
+            "Name": "LegionellaOn",
+            "Desc": "Legionella Beginn",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "9": {
+            "Name": "LegionellaOff",
+            "Desc": "Legionella Ende",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "10": {
+            "Name": "LegionellaTemp",
+            "Desc": "Legionella Temperatur",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }
+    },
+
+    "Step2": {
+        "1": {
+            "Name": "Mode",
+            "Desc": "Stufe 2 Modus",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "2": {
+            "Name": "LimitSource",
+            "Desc": "T Limit Quelle E",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }
+    },
+
+    "Operation": {
+        "1": {
+            "Name": "OpComp1",
+            "Desc": "Kompressor 1",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "2": {
+            "Name": "OpComp2",
+            "Desc": "Kompressor 2",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }, 
+        "3": {
+            "Name": "OpHeatComp1",
+            "Desc": "Heizung Kompressor",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }, 
+        "4": {
+            "Name": "OpHeatStep2",
+            "Desc": "Heizung E-Stab",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }, 
+        "5": {
+            "Name": "OpCooling",
+            "Desc": "Kühlung",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }, 
+        "6": {
+            "Name": "OpWaterComp1",
+            "Desc": "Warmwasser Kompressor",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }, 
+        "7": {
+            "Name": "OpWaterStep2",
+            "Desc": "Warmwasser E-Stab",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }, 
+        "8": {
+            "Name": "OpPoolWater",
+            "Desc": "Schwimmbecken",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }, 
+        "9": {
+            "Name": "OpSolar",
+            "Desc": "Solarkollektor",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }
+    },
+
+    "Failure": {
+        "1": {
+            "Name": "Time",
+            "Desc": "Ausfallzeit",
+            "Type": "string",
+            "Role": "text",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "2": {
+            "Name": "Date",
+            "Desc": "Ausfalldatum",
+            "Type": "string",
+            "Role": "text",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "3": {
+            "Name": "Mode",
+            "Desc": "Betriebsmodus",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "4": {
+            "Name": "DOBuffer",
+            "Desc": "DO-Buffer",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "5": {
+            "Name": "DIBuffer",
+            "Desc": "DI-Buffer",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "6": {
+            "Name": "Sensors",
+            "Desc": "Fühlerfehler",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "7": {
+            "Name": "PressureEvaporation",
+            "Desc": "T Verdampfer",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "8": {
+            "Name": "PressureCondensation",
+            "Desc": "T Kondensator",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "9": {
+            "Name": "ReturnTempCurrent",
+            "Desc": "T Rücklauf Ist",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "10": {
+            "Name": "FlowTemp",
+            "Desc": "T Vorlauf",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "11": {
+            "Name": "HeatSourceIn",
+            "Desc": "T Quelle Ein",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "12": {
+            "Name": "HeatSourceOut",
+            "Desc": "T Quelle Aus",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "13": {
+            "Name": "SuctionGasTemp",
+            "Desc": "T Saugleitung",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "14": {
+            "Name": "OutdoorTemp",
+            "Desc": "T Aussen",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "15": {
+            "Name": "DomesticWaterTemp",
+            "Desc": "T Warmwasser Ist",
+            "Type": "number",
+            "Role": "value.temperature",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }
+    },
+
+    "Service": {
+        "1": {
+            "Name": "OffsetND",
+            "Desc": "Offset ND",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "2": {
+            "Name": "OffsetHD",
+            "Desc": "Offset HD",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "3": {
+            "Name": "NDState",
+            "Desc": "ND Status",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }
+    },
+
+    "Warnings": {
+        "1": {
+            "Name": "Failure",
+            "Desc": "Ausfälle",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "2": {
+            "Name": "Interruptions",
+            "Desc": "Unterbrechungen",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "3": {
+            "Name": "Inputs",
+            "Desc": "Warnungen Eingang",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "4": {
+            "Name": "Outputs",
+            "Desc": "Warnungen Ausgang",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "5": {
+            "Name": "Sensors",
+            "Desc": "Warnungen Sensorik",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "6": {
+            "Name": "Others",
+            "Desc": "Warnungen Sonstige",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "7": {
+            "Name": "SupressInputs",
+            "Desc": "Unterdrückung Warnungen Eingang",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "8": {
+            "Name": "SupressOutputs",
+            "Desc": "Unterdrückung Warnungen Ausgang",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "9": {
+            "Name": "SupressSensorik",
+            "Desc": "Unterdrückung Warnungen Sensorik",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "10": {
+            "Name": "SupressOthers",
+            "Desc": "Unterdrückung Warnungen Sonstige",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }
+    },
+
+
+   "Energy": {
+        "1": {
+            "Name": "ElectricPower",
+            "Desc": "Leistung elektrisch",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "2": {
+            "Name": "ThermicPower",
+            "Desc": "Leistung thermisch",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "3": {
+            "Name": "COP",
+            "Desc": "COP",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "4": {
+            "Name": "SelectYear",
+            "Desc": "Auswahl Jahr",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "5": {
+            "Name": "SelectType",
+            "Desc": "Auswahl Typ",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "6": {
+            "Name": "SelectValue",
+            "Desc": "ausgewählter Wert",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "7": {
+            "Name": "PowerPunp",
+            "Desc": "Leistung Pumpe",
+            "Type": "number",
+            "Role": "value",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }
+   },
+
+   "Info": {
+        "1": {
+            "Name": "Version",
+            "Desc": "Version Firmware",
+            "Type": "string",
+            "Role": "text",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "2": {
+            "Name": "Date",
+            "Desc": "Datum Firmware",
+            "Type": "string",
+            "Role": "text",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "3": {
+            "Name": "Model",
+            "Desc": "Model",
+            "Type": "string",
+            "Role": "text",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        },
+        "4": {
+            "Name": "Serial",
+            "Desc": "Seriennummer",
+            "Type": "string",
+            "Role": "text",
+            "Write": {
+                "Enable": false,
+                "Adr" : 0,
+                "Enum": 0     
+            }
+        }
+   }
+}
+
+
+
