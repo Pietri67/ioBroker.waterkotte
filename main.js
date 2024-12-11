@@ -262,16 +262,16 @@ class Waterkotte extends utils.Adapter {
 					if (this.parseRequestNum == 4) {
 						switch(sendData[1]) {
 							case 1:
-								//this.setIntegerValue(sendData[2], sendData[3]);
+								this.setIntegerValue(sendData[2], sendData[3]);
 								break;
 							case 2:
-								//this.setWordValue(sendData[2], sendData[3]);
+								this.setWordValue(sendData[2], sendData[3]);
 								break;
 							case 3:
-								//this.setRealValue(sendData[2], sendData[3]);
+								this.setRealValue(sendData[2], sendData[3]);
 								break;
 							case 4:
-								//this.setTimeValue(sendData[2], sendData[3]);
+								this.setTimeValue(sendData[2], sendData[3]);
 								break;
 						}
 					}
@@ -297,6 +297,200 @@ class Waterkotte extends utils.Adapter {
 
 			default:
 				this.log.info('unknown step');
+		}
+	}
+
+	/*
+	*	write a integer value to waterkotte
+	* 	enum == 1
+	*/
+	async setIntegerValue(addr, value) {
+		try
+		{
+			const tlg = [];
+
+			tlg[0] = 1;     // Adr
+			tlg[1] = 0x05;  // Func.
+
+			tlg[2] = (addr >> 8) & 0xFF;    // Data
+			tlg[3] = addr & 0xFF;      		// Data
+
+			if (value == 0) {
+				tlg[4] = 0x00;      // Data
+			} else {
+				tlg[4] = 0xFF;      // Data
+			}
+
+			tlg[5] = 0x00;      	// Data
+
+			const crc16 = WkTools.calcCRC16(tlg, 6);
+			tlg[6] = (crc16 >> 8) & 0xFF;
+			tlg[7] = crc16 & 0xFF;
+
+			// send Waterkotte telegram
+			// @ts-ignore
+			this.commPort.write(tlg, (err) => {
+				if (err) {
+					this.log.warn('Waterkotte boolean data error sending: ' + err);
+					this.statemachine('idle');
+					return;
+				}
+			});
+
+			this.log.info('Waterkotte boolean value change: ' + tlg);
+			this.statemachine('receive');
+
+		} catch (e) {
+			// Logfile
+			this.log.error('Waterkotte boolean data sent error: ' + e);
+			this.statemachine('idle');
+		}
+	}
+
+	/*
+	*	write a word value to waterkotte
+	* 	enum == 2
+	*/
+	async setWordValue(addr, value) {
+		try
+		{
+			const tlg = [];
+
+			tlg[0] = 1;     // Adr
+			tlg[1] = 0x06;  // Func.
+
+			tlg[2] = (addr >> 8) & 0xFF;    // Data
+			tlg[3] = addr & 0xFF;      		// Data
+
+			tlg[4] = (value >> 8) & 0xFF;   // Data
+			tlg[5] = value & 0xFF;      	// Data
+
+			const crc16 = WkTools.calcCRC16(tlg, 6);
+			tlg[6] = (crc16 >> 8) & 0xFF;
+			tlg[7] = crc16 & 0xFF;
+
+			// send Waterkotte telegram
+			// @ts-ignore
+			this.commPort.write(tlg, (err) => {
+				if (err) {
+					this.log.warn('Waterkotte word data error sending: ' + err);
+					this.statemachine('idle');
+					return;
+				}
+			});
+
+			this.log.info('Waterkotte word value change: ' + tlg);
+			this.statemachine('receive');
+
+		} catch (e) {
+			// Logfile
+			this.log.error('Waterkotte word data sent error: ' + e);
+			this.statemachine('idle');
+		}
+	}
+
+	/*
+	*	write a real value to waterkotte
+	* 	enum == 3
+	*/
+	async setRealValue(addr, value) {
+		try
+		{
+			const tlg = [];
+
+			tlg[0] = 1;     // Adr
+			tlg[1] = 0x10;  // Func.
+
+			tlg[2] = (addr >> 8) & 0xFF;    // Data
+			tlg[3] = addr & 0xFF;      		// Data
+			tlg[4] = 0;      				// Quantity HiByte
+			tlg[5] = 2;      				// Quantity LoByte
+			tlg[6] = 4;      				// value byte size
+
+			const buf = Buffer.allocUnsafe(4);
+			buf.writeFloatBE(value, 0);
+
+			/*
+				bei buf.read/write Float hat
+				buf0 - HighByte ... buf3 - LowByte
+
+				Adr0 -> buf[2]
+				Adr1 -> buf[3]
+				Adr2 -> buf[0]
+				Adr3 -> buf[1]
+			*/
+
+			tlg[7]  = buf[2];
+			tlg[8]  = buf[3];
+			tlg[9]  = buf[0];
+			tlg[10] = buf[1];
+
+			const crc16 = WkTools.calcCRC16(tlg, 11);
+			tlg[11] = (crc16 >> 8) & 0xFF;
+			tlg[12] = crc16 & 0xFF;
+
+			// send Waterkotte telegram
+			// @ts-ignore
+			this.commPort.write(tlg, (err) => {
+				if (err) {
+					this.log.warn('Waterkotte real data error sending: ' + err);
+					this.statemachine('idle');
+					return;
+				}
+			});
+
+			this.log.info('Waterkotte real value change: ' + tlg);
+			this.statemachine('receive');
+
+		} catch (e) {
+			// Logfile
+			this.log.error('Waterkotte real data sent error: ' + e);
+			this.statemachine('idle');
+		}
+	}
+
+	/*
+	*	write a time value to waterkotte
+	* 	enum == 4
+	*/
+	async setTimeValue(addr, value) {
+		try
+		{
+			const tlg = [];
+
+			tlg[0] = 1;     // Adr
+			tlg[1] = 0x10;  // Func.
+
+			tlg[2] = (addr >> 8) & 0xFF;    // Data
+			tlg[3] = addr & 0xFF;      		// Data
+			tlg[4] = 0;      				// Quantity HiByte
+			tlg[5] = 1;      				// Quantity LoByte
+			tlg[6] = 2;      				// value byte size
+
+			tlg[7]  = (WkTools.hour_of_time(value)) & 0xFF;
+			tlg[8]  = (WkTools.min_of_time(value)) & 0xFF;
+
+			const crc16 = WkTools.calcCRC16(tlg, 9);
+			tlg[9] = (crc16 >> 8) & 0xFF;
+			tlg[10] = crc16 & 0xFF;
+
+			// send Waterkotte telegram
+			// @ts-ignore
+			this.commPort.write(tlg, (err) => {
+				if (err) {
+					this.log.warn('Waterkotte time data error sending: ' + err);
+					this.statemachine('idle');
+					return;
+				}
+			});
+
+			this.log.info('Waterkotte time value change: ' + tlg);
+			this.statemachine('receive');
+
+		} catch (e) {
+			// Logfile
+			this.log.error('Waterkotte time data sent error: ' + e);
+			this.statemachine('idle');
 		}
 	}
 
